@@ -1,0 +1,7 @@
+# Ignore frontend folder
+/client
+# Environment variables
+.env
+
+# Dependencies
+node_modules
