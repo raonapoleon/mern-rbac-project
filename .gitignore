@@ -1,5 +1,4 @@
-# Ignore frontend folder
-/client
+
 # Environment variables
 .env
 
