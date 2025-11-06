@@ -1,208 +1,222 @@
+/* ---- client/src/App.css ---- */
 
+/* 1. Main App Layout */
 .App {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 1.5rem 2rem 1.5rem;
 }
 
-/* Main Page Heading */
 .App-header {
   text-align: center;
-  color: #222;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-light);
 }
 
-/* Navigation Bar */
+.page-container {
+  background-color: var(--bg-light);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+/* 2. Navigation Bar */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 nav .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 nav a {
   font-weight: 500;
-  color: #555;
-  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  position: relative; /* For the hover effect */
 }
 
-nav a:hover {
-  color: #007bff;
-  text-decoration: none;
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary);
+  transition: width 0.3s ease;
 }
 
-/* Logout Button in Nav */
-nav button {
-  background: #e74c3c;
-  color: white;
+nav a:hover, nav a.active {
+  color: var(--text-light);
+}
+
+nav a:hover::after, nav a.active::after {
+  width: 100%;
+}
+
+/* 3. Button Styles (Primary, Secondary, Danger) */
+.btn {
+  padding: 12px 24px;
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-nav button:hover {
-  background: #c0392b;
-}
-
-/* General Page Content */
-.page-container {
-  background: #ffffff;
-  padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-block;
+  text-align: center;
 }
 
-/* --- Form Styles --- */
-form {
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-light);
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 5px 15px rgba(106, 90, 249, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #3A4453;
+  color: var(--text-light);
+}
+.btn-secondary:hover {
+  background: #4B5563;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: var(--text-light);
+}
+.btn-danger:hover {
+  background: #C0392B;
+  transform: translateY(-2px);
+}
+
+nav .btn-logout {
+  padding: 8px 16px;
+  background: var(--danger);
+  color: white;
+  border-radius: 8px;
+}
+nav .btn-logout:hover {
+  background: #C0392B;
+}
+
+/* 4. Form Styles */
+.form-container {
   max-width: 500px;
-  margin: 1rem auto;
+  margin: 2rem auto;
 }
 
-form div {
-  margin-bottom: 1.25rem;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-form label {
+.form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #444;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form textarea {
+.form-group input,
+.form-group textarea {
   width: 100%;
-  padding: 12px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border-radius: 8px;
+  transition: var(--transition);
 }
 
-form input[type="text"]:focus,
-form input[type="email"]:focus,
-form input[type="password"]:focus,
-form textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(106, 90, 249, 0.3);
 }
 
-form textarea {
+.form-group textarea {
   min-height: 120px;
   resize: vertical;
 }
 
-/* --- Button Styles --- */
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-button.secondary {
-  background-color: #6c757d;
-}
-button.secondary:hover {
-  background-color: #5a6268;
-}
-
-button.danger {
-  background-color: #e74c3c;
-}
-button.danger:hover {
-  background-color: #c0392b;
-}
-
-
-/* --- Admin Table --- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+/* 5. Error Message */
+.error-message {
+  color: #F8B4B4;
+  font-weight: 500;
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid var(--danger);
+  padding: 1rem;
   border-radius: 8px;
-  overflow: hidden;
+  margin: 1rem 0;
+  text-align: center;
 }
 
-th, td {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
+/* 6. Post Card Styles */
+.posts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-th {
-  background-color: #f9fafb;
-  font-weight: 600;
-  color: #333;
+.create-post-form {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--bg-dark);
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
 }
 
-tbody tr:hover {
-  background-color: #f9f9f9;
-}
-
-table select {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-/* --- Post Card Styles --- */
 .post-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .post-card h3 {
   margin-top: 0;
-  color: #007bff;
+  color: var(--primary-hover);
 }
 
 .post-author {
   font-style: italic;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
 .post-content {
-  color: #444;
-  line-height: 1.6;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 .post-actions {
@@ -211,27 +225,57 @@ table select {
   gap: 0.5rem;
 }
 
-.post-actions button {
+/* 7. Admin Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden; /* To keep border-radius */
+}
+
+.admin-table th, .admin-table td {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #1B2537;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.admin-table tbody tr {
+  background-color: var(--bg-light);
+  transition: background-color 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #2a344a;
+}
+
+.admin-table select {
   padding: 8px 12px;
-  font-size: 14px;
-}
-
-/* Create Post Form */
-.create-post-form {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: #fdfdfd;
-  border: 1px dashed #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-family);
+  cursor: pointer;
 }
 
-/* --- Utility Classes --- */
-.error-message {
-  color: #e74c3c;
-  font-weight: 500;
-  background-color: #fdeded;
-  border: 1px solid #e74c3c;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-top: 1rem;
+/* 8. Profile Page */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.profile-info span {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 10px;
 }

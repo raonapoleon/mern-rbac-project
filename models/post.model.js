@@ -1,4 +1,4 @@
-// ---- models/post.model.js ----
+
 
 import mongoose from 'mongoose';
 

@@ -1,36 +1,6 @@
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
-  /* Set a light, clean background for the whole page */
-  background-color: #f4f7f6;
-  color: #333;
-}
-
-/* Remove default code styling */
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* Set a global box-sizing model */
 * {
   box-sizing: border-box;
-}
-
-/* Style all links */
-a {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  margin: 0;
+  padding: 0;
 }
