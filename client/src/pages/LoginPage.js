@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
 import {
   Box,
   Button,
@@ -13,6 +12,8 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
+  Flex, // Import Flex
+  Text,  // Import Text
 } from '@chakra-ui/react';
 
 function LoginPage() {
@@ -34,76 +35,93 @@ function LoginPage() {
   };
 
   return (
-    <Box
-      maxW="md"
-      mx="auto"
-      mt={8}
-      p={8}
-      /* "FROSTED GLASS" EFFECT */
-      bg="rgba(27, 37, 55, 0.7)"
-      backdropFilter="blur(10px)"
-      borderWidth={1}
-      borderColor="rgba(58, 68, 83, 0.5)"
-      borderRadius="xl"
-      boxShadow="lg"
+    // Main container for the split layout
+    <Flex
+      direction={{ base: 'column', md: 'row' }} // Stack on mobile, side-by-side on desktop
+      align="center"
+      justify="center"
+      minH="70vh" // Give it height
+      gap={8} // Space between items
     >
-      <form onSubmit={handleSubmit}>
-        <VStack spacing={6}>
-          <Heading as="h2" size="lg" textAlign="center">
-            Member Login
-          </Heading>
+      {/* 1. Left Side: Welcome Text */}
+      <Box flex="1" p={8}>
+        <Heading as="h1" size="2xl" mb={4}>
+          Welcome Back
+        </Heading>
+        <Text fontSize="xl" color="#A9B4C2">
+          Log in to access your secure dashboard, manage content, and view your profile.
+        </Text>
+      </Box>
 
-          {error && (
-            <Alert status="error" borderRadius="md" bg="rgba(231, 76, 60, 0.1)" borderColor="#E74C3C">
-              <AlertIcon color="#E74C3C" />
-              <AlertTitle color="#F8B4B4">{error}</AlertTitle>
-            </Alert>
-          )}
+      {/* 2. Right Side: Login Form */}
+      <Box
+        flex="1" // Both boxes take equal space
+        maxW="md"
+        p={8}
+        bg="rgba(27, 37, 55, 0.7)"
+        backdropFilter="blur(10px)"
+        borderWidth={1}
+        borderColor="rgba(58, 68, 83, 0.5)"
+        borderRadius="xl"
+        boxShadow="lg"
+      >
+        <form onSubmit={handleSubmit}>
+          <VStack spacing={6}>
+            <Heading as="h2" size="lg" textAlign="center">
+              Member Login
+            </Heading>
 
-          <FormControl isRequired>
-            <FormLabel color="#A9B4C2">Email:</FormLabel>
-            <Input
-              type="email"
-              value={email}
-              // --- THE FIX IS HERE ---
-              onChange={(e) => setEmail(e.target.value)} // Was e.targe.value
-              placeholder="you@example.com"
-              focusBorderColor="#6A5AF9"
+            {error && (
+              <Alert status="error" borderRadius="md" bg="rgba(231, 76, 60, 0.1)" borderColor="#E74C3C">
+                <AlertIcon color="#E74C3C" />
+                <AlertTitle color="#F8B4B4">{error}</AlertTitle>
+              </Alert>
+            )}
+
+            <FormControl isRequired>
+              <FormLabel color="#A9B4C2">Email:</FormLabel>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                focusBorderColor="#6A5AF9"
+                size="lg"
+                bg="#121826"
+                borderColor="#3A4453"
+              />
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel color="#A9B4C2">Password:</FormLabel>
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                focusBorderColor="#6A5AF9"
+                size="lg"
+                bg="#121826"
+                borderColor="#3A4453"
+              />
+            </FormControl>
+
+            <Button
+              type="submit"
+              bg="#6A5AF9"
+              color="white"
+              _hover={{ bg: '#5A4AF9', transform: 'translateY(-2px)', boxShadow: 'lg' }}
               size="lg"
-              bg="#121826"
-              borderColor="#3A4453"
-            />
-          </FormControl>
-
-          <FormControl isRequired>
-            <FormLabel color="#A9B4C2">Password:</FormLabel>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              focusBorderColor="#6A5AF9"
-              size="lg"
-              bg="#121826"
-              borderColor="#3A4453"
-            />
-          </FormControl>
-
-          <Button
-            type="submit"
-            bg="#6A5AF9"
-            color="white"
-            _hover={{ bg: '#5A4AF9', transform: 'translateY(-2px)', boxShadow: 'lg' }}
-            size="lg"
-            width="full"
-            isLoading={false}
-            transition="all 0.3s ease"
-          >
-            Login
-          </Button>
-        </VStack>
-      </form>
-    </Box>
+              width="full"
+              isLoading={false}
+              transition="all 0.3s ease"
+            >
+              Login
+            </Button>
+          </VStack>
+        </form>
+      </Box>
+    </Flex>
   );
 }
 

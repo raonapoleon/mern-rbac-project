@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Import Chakra components
 import {
   Box,
   Button,
@@ -38,7 +37,7 @@ function CreatePostForm({ onPostCreated }) {
     <Box
       p={6}
       my={6}
-      bg="rgba(18, 24, 38, 0.7)" // Slightly darker than page
+      bg="rgba(18, 24, 38, 0.7)" // Slightly darker
       borderWidth={1}
       borderColor="rgba(58, 68, 83, 0.5)"
       borderRadius="xl"

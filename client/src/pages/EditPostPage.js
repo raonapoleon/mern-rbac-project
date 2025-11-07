@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Import Chakra components
 import {
   Box,
   Button,
@@ -64,7 +63,7 @@ function EditPostPage() {
 
   return (
     <Box
-      maxW="lg" // Make it a bit wider for editing
+      maxW="lg"
       mx="auto"
       p={8}
       bg="rgba(27, 37, 55, 0.7)"

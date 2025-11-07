@@ -18,6 +18,7 @@ import {
   Select,
   Spinner,
   Center,
+  Text,
 } from '@chakra-ui/react';
 
 function AdminPage() {
@@ -68,10 +69,14 @@ function AdminPage() {
       borderColor="rgba(58, 68, 83, 0.5)"
       borderRadius="xl"
       boxShadow="lg"
+      minH="70vh"
     >
-      <Heading as="h2" size="lg" mb={6}>
+      <Heading as="h2" size="xl" mb={6} textAlign="center">
         Admin Dashboard: User Management
       </Heading>
+      <Text fontSize="md" color="#A9B4C2" mb={6} textAlign="center">
+        Manage user roles and permissions across the platform. Changes are applied instantly.
+      </Text>
       {error && (
         <Alert status="error" borderRadius="md" bg="rgba(231, 76, 60, 0.1)" borderColor="#E74C3C" mb={4}>
           <AlertIcon color="#E74C3C" />
@@ -79,20 +84,25 @@ function AdminPage() {
         </Alert>
       )}
       
-      <TableContainer>
-        <Table variant="simple">
+      <TableContainer
+        bg="rgba(18, 24, 38, 0.7)"
+        borderRadius="md"
+        borderWidth={1}
+        borderColor="rgba(58, 68, 83, 0.5)"
+      >
+        <Table variant="simple" colorScheme="whiteAlpha">
           <Thead>
-            <Tr>
-              <Th color="#F0F4F8">Username</Th>
-              <Th color="#F0F4F8">Email</Th>
-              <Th color="#F0F4F8">Role</Th>
+            <Tr bg="rgba(58, 68, 83, 0.5)">
+              <Th color="white" fontSize="md">Username</Th>
+              <Th color="white" fontSize="md">Email</Th>
+              <Th color="white" fontSize="md">Role</Th>
             </Tr>
           </Thead>
           <Tbody>
             {users.map((user) => (
-              <Tr key={user._id} _hover={{ bg: 'rgba(58, 68, 83, 0.5)' }}>
-                <Td>{user.username}</Td>
-                <Td>{user.email}</Td>
+              <Tr key={user._id} _hover={{ bg: 'rgba(58, 68, 83, 0.3)' }}>
+                <Td color="#F0F4F8">{user.username}</Td>
+                <Td color="#F0F4F8">{user.email}</Td>
                 <Td>
                   <Select 
                     value={user.role} 
@@ -100,6 +110,7 @@ function AdminPage() {
                     bg="#121826"
                     borderColor="#3A4453"
                     focusBorderColor="#6A5AF9"
+                    color="#F0F4F8"
                   >
                     <option value="Viewer">Viewer</option>
                     <option value="Editor">Editor</option>
