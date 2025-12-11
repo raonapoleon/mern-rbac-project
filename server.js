@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'; // 1. Import cors
+import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
 import postRoutes from './routes/post.routes.js';
@@ -12,16 +12,22 @@ connectDB();
 
 const app = express();
 
-// 2. Configure CORS
-// This tells the browser to allow requests from your frontend URL
+// --- CRITICAL DEPLOYMENT SETTING ---
+// This tells Express to trust the secure connection (HTTPS) provided by Render.
+// Without this, the 'secure: true' cookie will be blocked.
+app.set('trust proxy', 1);
+
+// Configure CORS
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:3000", 
-  credentials: true // Crucial for sending cookies
+  // Use the environment variable for production, or localhost for dev
+  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  credentials: true // Allow cookies to be sent
 }));
 
 app.use(express.json());
 app.use(cookieParser());
 
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
